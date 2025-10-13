@@ -10,7 +10,7 @@
     }
   ],
   "kubernetes": {
-    "managerFilePatterns": ["/\\.yaml$/"]
+    "managerFilePatterns": ["/\\.ya?ml$/"]
   },
   "packageRules": [
     {
