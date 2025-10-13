@@ -19,7 +19,7 @@ items:
         spec:
           containers:
             - name: papers-frontend
-              image: ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend:latest@sha256:95e2ce9fdd143705ca876f098cd80d671ed4277dd3629f71cf2c122daa0018a6
+              image: ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend:latest@sha256:f0455657901cf4880182f4a203ab102b15a75ddb689b4e3984152b3e4eb1cf3e
               ports:
                 - containerPort: 3000
               env:
