@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: List
+items:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: papers-frontend
+      namespace: papers
+    spec:
+      selector:
+        matchLabels:
+          app: papers-frontend
+      template:
+        metadata:
+          annotations:
+            sidecar.istio.io/proxyCPU: '0m'
+          labels:
+            app: papers-frontend
+        spec:
+          containers:
+            - name: papers-frontend
+              image: ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend:8f8be3a5f73ac2b501d750b94a4c5907c48639fa
+              ports:
+                - containerPort: 3000
+              env:
+                # Supabase Configuration from existing secret
+                - name: SUPABASE_SERVICE_ROLE_KEY
+                  valueFrom:
+                    secretKeyRef:
+                      name: supabase-jwt
+                      key: serviceKey
+                # Email Configuration using Purelymail
+                - name: EMAIL_HOST
+                  value: 'smtp.purelymail.com'
+                - name: EMAIL_PORT
+                  value: '465'
+                - name: EMAIL_TLS
+                  value: 'true'
+                - name: EMAIL_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: supabase-smtp
+                      key: username
+                - name: EMAIL_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: supabase-smtp
+                      key: password
+              resources:
+                requests:
+                  memory: '256Mi'
+                  cpu: '100m'
+                limits:
+                  memory: '512Mi'
+                  cpu: '500m'
+              livenessProbe:
+                httpGet:
+                  path: /healthcheck
+                  port: 3000
+                initialDelaySeconds: 30
+                periodSeconds: 30
+                timeoutSeconds: 5
+                failureThreshold: 3
+              readinessProbe:
+                httpGet:
+                  path: /healthcheck
+                  port: 3000
+                initialDelaySeconds: 10
+                periodSeconds: 10
+                timeoutSeconds: 5
+                failureThreshold: 3
+          imagePullSecrets:
+            - name: ghcr-login-secret
+
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: papers-frontend
+      namespace: papers
+    spec:
+      selector:
+        app: papers-frontend
+      ports:
+        - port: 80
+          targetPort: 3000
+          name: http

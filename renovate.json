@@ -1,0 +1,24 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "hostRules": [
+    {
+      "matchHost": "ghcr.io",
+      "hostType": "docker",
+      "username": "x-access-token",
+      "password": "{{ secrets.MEND_GH_TOKEN }}"
+    }
+  ],
+  "kubernetes": {
+    "fileMatch": ["papers/.*\\.ya?ml$"]
+  },
+  "packageRules": [
+    {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": [
+        "ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend"
+      ],
+      "enabled": true
+    }
+  ]
+}
