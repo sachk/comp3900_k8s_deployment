@@ -46,6 +46,27 @@ items:
                     secretKeyRef:
                       name: supabase-smtp
                       key: password
+                # OAuth Configuration from supabase-oauth secret
+                - name: SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: supabase-oauth
+                      key: google-client-id
+                - name: SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: supabase-oauth
+                      key: google-secret
+                - name: SUPABASE_AUTH_GITHUB_CLIENT_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: supabase-oauth
+                      key: github-client-id
+                - name: SUPABASE_AUTH_GITHUB_SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: supabase-oauth
+                      key: github-secret
               resources:
                 requests:
                   memory: "256Mi"
