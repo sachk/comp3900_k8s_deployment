@@ -18,7 +18,8 @@
       "matchPackageNames": [
         "ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend"
       ],
-      "enabled": true
+      "enabled": true,
+      "automerge": true
     }
   ]
 }
