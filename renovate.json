@@ -5,12 +5,12 @@
     {
       "matchHost": "ghcr.io",
       "hostType": "docker",
-      "username": "x-access-token",
+      "username": "sachk",
       "password": "{{ secrets.MEND_GH_TOKEN }}"
     }
   ],
   "kubernetes": {
-    "fileMatch": ["papers/.*\\.ya?ml$"]
+    "managerFilePatterns": ["/\\.yaml$/"]
   },
   "packageRules": [
     {
