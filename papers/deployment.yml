@@ -13,13 +13,13 @@ items:
       template:
         metadata:
           annotations:
-            sidecar.istio.io/proxyCPU: '0m'
+            sidecar.istio.io/proxyCPU: "0m"
           labels:
             app: papers-frontend
         spec:
           containers:
             - name: papers-frontend
-              image: ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend:8f8be3a5f73ac2b501d750b94a4c5907c48639fa
+              image: ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend:latest@sha256:d823a9379c806513fcf606e69334e67ee576eea559b0b7afad591a06e5b82f86
               ports:
                 - containerPort: 3000
               env:
@@ -31,11 +31,11 @@ items:
                       key: serviceKey
                 # Email Configuration using Purelymail
                 - name: EMAIL_HOST
-                  value: 'smtp.purelymail.com'
+                  value: "smtp.purelymail.com"
                 - name: EMAIL_PORT
-                  value: '465'
+                  value: "465"
                 - name: EMAIL_TLS
-                  value: 'true'
+                  value: "true"
                 - name: EMAIL_USER
                   valueFrom:
                     secretKeyRef:
@@ -48,11 +48,11 @@ items:
                       key: password
               resources:
                 requests:
-                  memory: '256Mi'
-                  cpu: '100m'
+                  memory: "256Mi"
+                  cpu: "100m"
                 limits:
-                  memory: '512Mi'
-                  cpu: '500m'
+                  memory: "512Mi"
+                  cpu: "500m"
               livenessProbe:
                 httpGet:
                   path: /healthcheck
