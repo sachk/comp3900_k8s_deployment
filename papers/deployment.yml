@@ -19,7 +19,7 @@ items:
         spec:
           initContainers:
             - name: migrations-runner
-              image: ghcr.io/unsw-cse-comp99-3900/h09b-banana-migration-runner:latest@sha256:7d740a64bc049f24fa4c149656551261c3037d0c14d7039400c352222ff4028c
+              image: ghcr.io/unsw-cse-comp99-3900/h09b-banana-migration-runner:1a0aa564e33460d7e68eb31e76b45e0c15113e76
               env:
                 - name: DB_HOST
                   value: "supabase-supabase-db"
@@ -37,7 +37,7 @@ items:
                       key: password
           containers:
             - name: papers-frontend
-              image: ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend:latest@sha256:90483bc2885f12a60b670051fc53e8c597261eda51e7feeec7b55913e716e351
+              image: ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend:latest
               ports:
                 - containerPort: 3000
               env:
