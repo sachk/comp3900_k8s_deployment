@@ -17,6 +17,24 @@ items:
           labels:
             app: papers-frontend
         spec:
+          initContainers:
+            - name: migrations-runner
+              image: ghcr.io/unsw-cse-comp99-3900/h09b-banana-migration-runner:latest@sha256:a8dd6e50e7eff86922ae45cb6e798b3d40a6958202dea4115faa6ed89a4713b2
+              env:
+                - name: DB_HOST
+                  value: "supabase-supabase-db"
+                - name: DB_PORT
+                  value: "5432"
+                - name: DB_USER
+                  valueFrom:
+                    secretKeyRef:
+                      name: supabase-db
+                      key: username
+                - name: DB_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      name: supabase-db
+                      key: password
           containers:
             - name: papers-frontend
               image: ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend:latest@sha256:90483bc2885f12a60b670051fc53e8c597261eda51e7feeec7b55913e716e351
