@@ -19,7 +19,7 @@ items:
         spec:
           initContainers:
             - name: migrations-runner
-              image: ghcr.io/unsw-cse-comp99-3900/h09b-banana-migration-runner:latest@sha256:a8dd6e50e7eff86922ae45cb6e798b3d40a6958202dea4115faa6ed89a4713b2
+              image: ghcr.io/unsw-cse-comp99-3900/h09b-banana-migration-runner:latest@sha256:7d740a64bc049f24fa4c149656551261c3037d0c14d7039400c352222ff4028c
               env:
                 - name: DB_HOST
                   value: "supabase-supabase-db"
