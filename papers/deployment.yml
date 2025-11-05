@@ -19,25 +19,51 @@ items:
         spec:
           initContainers:
             - name: migrations-runner
-              image: ghcr.io/unsw-cse-comp99-3900/h09b-banana-migration-runner:1a0aa564e33460d7e68eb31e76b45e0c15113e76
+              image: ghcr.io/unsw-cse-comp99-3900/h09b-banana-migration-runner:616ebb06f43bc610804c967e671217b2cb7344e8
               env:
-                - name: DB_HOST
+                - name: POSTGRES_HOST
                   value: "supabase-supabase-db"
-                - name: DB_PORT
+                - name: POSTGRES_PORT
                   value: "5432"
-                - name: DB_USER
+                - name: POSTGRES_DB
+                  value: "postgres"
+                - name: POSTGRES_USER
                   valueFrom:
                     secretKeyRef:
                       name: supabase-db
                       key: username
-                - name: DB_PASSWORD
+                - name: POSTGRES_PASSWORD
                   valueFrom:
                     secretKeyRef:
                       name: supabase-db
                       key: password
+                - name: PGSSLMODE
+                  value: disable
+                - name: DATABASE_URL
+                  value: "postgres://$(POSTGRES_USER):$(POSTGRES_PASSWORD)@$(POSTGRES_HOST):$(POSTGRES_PORT)/$(POSTGRES_DB)"
+                - name: SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: supabase-oauth
+                      key: google-client-id
+                - name: SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: supabase-oauth
+                      key: google-secret
+                - name: SUPABASE_AUTH_GITHUB_CLIENT_ID
+                  valueFrom:
+                    secretKeyRef:
+                      name: supabase-oauth
+                      key: github-client-id
+                - name: SUPABASE_AUTH_GITHUB_SECRET
+                  valueFrom:
+                    secretKeyRef:
+                      name: supabase-oauth
+                      key: github-secret
           containers:
             - name: papers-frontend
-              image: ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend:latest
+              image: ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend:616ebb06f43bc610804c967e671217b2cb7344e8
               ports:
                 - containerPort: 3000
               env:
