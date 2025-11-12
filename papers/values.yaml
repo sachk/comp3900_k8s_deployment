@@ -6,15 +6,15 @@ image:
   frontend:
     repository: ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend
     pullPolicy: IfNotPresent
-    tag: "2d0b53599bd171489e2d3c0a0e90fb96264e9e91"
+    tag: "faa48bc0cf76ebc1de81e81d5aa097857dabaa31"
   migrations:
     repository: ghcr.io/unsw-cse-comp99-3900/h09b-banana-migration-runner
     pullPolicy: IfNotPresent
-    tag: "2d0b53599bd171489e2d3c0a0e90fb96264e9e91"
+    tag: "faa48bc0cf76ebc1de81e81d5aa097857dabaa31"
   worker:
     repository: ghcr.io/unsw-cse-comp99-3900/h09b-banana-queue-worker
     pullPolicy: IfNotPresent
-    tag: "2d0b53599bd171489e2d3c0a0e90fb96264e9e91"
+    tag: "faa48bc0cf76ebc1de81e81d5aa097857dabaa31"
 
 imagePullSecrets:
   - name: ghcr-login-secret
