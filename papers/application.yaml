@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: papers
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/unsw-cse-comp99-3900/capstone-project-25t3-3900-h09b-banana.git
+      targetRevision: main
+      path: deployment/helm-chart
+      helm:
+        valueFiles:
+          - values.yaml
+    - repoURL: https://github.com/unsw-cse-comp99-3900/comp3900_k8s_deployment.git
+      targetRevision: main
+      ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: papers

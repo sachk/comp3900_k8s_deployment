@@ -1,0 +1,69 @@
+replicaCount: 1
+
+fullnameOverride: papers
+
+image:
+  frontend:
+    repository: ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend
+    pullPolicy: IfNotPresent
+    tag: "616ebb06f43bc610804c967e671217b2cb7344e8"
+  migrations:
+    repository: ghcr.io/unsw-cse-comp99-3900/h09b-banana-migration-runner
+    pullPolicy: IfNotPresent
+    tag: "616ebb06f43bc610804c967e671217b2cb7344e8"
+
+imagePullSecrets:
+  - name: ghcr-login-secret
+
+podAnnotations:
+  sidecar.istio.io/proxyCPU: "0m"
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+
+autoscaling:
+  enabled: false
+
+database:
+  host: supabase-supabase-db
+  port: 5432
+  name: postgres
+  sslMode: disable
+  secretName: supabase-db
+  userKey: username
+  passwordKey: password
+
+email:
+  host: smtp.purelymail.com
+  port: 465
+  tls: true
+  secretName: supabase-smtp
+  userKey: username
+  passwordKey: password
+
+supabase:
+  secretName: supabase-jwt
+  serviceRoleKey: serviceKey
+
+oauth:
+  secretName: supabase-oauth
+  google:
+    clientIdKey: google-client-id
+    secretKey: google-secret
+  github:
+    clientIdKey: github-client-id
+    secretKey: github-secret
+
+initContainers:
+  migrations:
+    enabled: true
