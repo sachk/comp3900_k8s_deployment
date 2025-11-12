@@ -5,13 +5,13 @@ metadata:
   namespace: argo-cd
 spec:
   project: default
-  sources:
-    - repoURL: https://github.com/unsw-cse-comp99-3900/capstone-project-25t3-3900-h09b-banana.git
-      targetRevision: H09BBANANA-69-worker-helm
-      path: deployment/helm-chart
-      helm:
-        valueFiles:
-          - values.yaml
+  source:
+    repoURL: https://github.com/unsw-cse-comp99-3900/capstone-project-25t3-3900-h09b-banana.git
+    targetRevision: develop
+    path: deployment/helm-chart
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: papers
