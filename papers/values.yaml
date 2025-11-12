@@ -6,11 +6,15 @@ image:
   frontend:
     repository: ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend
     pullPolicy: IfNotPresent
-    tag: "616ebb06f43bc610804c967e671217b2cb7344e8"
+    tag: "d409a21866c1a2af85a15e0d3600f50db0286548"
   migrations:
     repository: ghcr.io/unsw-cse-comp99-3900/h09b-banana-migration-runner
     pullPolicy: IfNotPresent
-    tag: "616ebb06f43bc610804c967e671217b2cb7344e8"
+    tag: "d409a21866c1a2af85a15e0d3600f50db0286548"
+  worker:
+    repository: ghcr.io/unsw-cse-comp99-3900/h09b-banana-queue-worker
+    pullPolicy: IfNotPresent
+    tag: "d409a21866c1a2af85a15e0d3600f50db0286548"
 
 imagePullSecrets:
   - name: ghcr-login-secret
@@ -50,10 +54,20 @@ email:
   secretName: supabase-smtp
   userKey: username
   passwordKey: password
+  hostKey: host
+  portKey: port
+  secureKey: secure
 
 supabase:
   secretName: supabase-jwt
   serviceRoleKey: serviceKey
+
+worker:
+  enabled: true
+  replicaCount: 1
+  nodeEnv: production
+  supabaseUrl: https://api.paper.observer
+  pollIntervalMs: 30000
 
 oauth:
   secretName: supabase-oauth
