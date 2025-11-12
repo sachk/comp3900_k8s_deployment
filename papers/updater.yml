@@ -9,7 +9,7 @@ spec:
     - namePattern: "paper*"
       commonUpdateSettings:
         updateStrategy: "newest-build"
-        allowTags: "regexp:^[0-9a-fA-F]{7,40}$"
+        allowTags: "regexp:^[0-9a-fA-F]{8,40}$"
       writeBackConfig:
         method: "git:secret:argocd-image-updater-system/git-creds"
         gitConfig:
