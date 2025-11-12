@@ -12,7 +12,7 @@ spec:
       writeBackConfig:
         method: "git"
         gitConfig:
-          repository: "https://github.com/sachk/comp3900_k8s_deployment.git"
+          repository: "git@github.com:sachk/comp3900_k8s_deployment.git"
           branch: "main"
           writeBackTarget: "helmvalues:./papers/values.yaml"
       images:
