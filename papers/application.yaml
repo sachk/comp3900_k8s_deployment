@@ -14,7 +14,7 @@ spec:
           - $values/papers/values.yaml
           - $values/papers/versions.yaml
     - repoURL: "git@github.com:sachk/comp3900_k8s_deployment.git"
-      targetRevision: main
+      targetRevision: H09BBANANA-28-opentele-logging
       ref: values
   syncPolicy:
     automated: {}
