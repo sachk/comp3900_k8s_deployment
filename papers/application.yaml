@@ -5,15 +5,17 @@ metadata:
   namespace: argo-cd
 spec:
   project: default
-  source:
-    repoURL: https://github.com/unsw-cse-comp99-3900/capstone-project-25t3-3900-h09b-banana.git
-    targetRevision: develop
-    path: deployment/helm-chart
-    helm:
-      valueFiles:
-        - values.yaml
-        - versions.yaml
-      fileParameters:
+  sources:
+    - repoURL: https://github.com/unsw-cse-comp99-3900/capstone-project-25t3-3900-h09b-banana.git
+      targetRevision: develop
+      path: deployment/helm-chart
+      helm:
+        valueFiles:
+          - $values/papers/values.yaml
+          - $values/papers/versions.yaml
+    - repoURL: "git@github.com:sachk/comp3900_k8s_deployment.git"
+      targetRevision: main
+      ref: values
   destination:
     server: https://kubernetes.default.svc
     namespace: papers
