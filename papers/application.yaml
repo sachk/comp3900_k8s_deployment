@@ -12,6 +12,8 @@ spec:
     helm:
       valueFiles:
         - values.yaml
+        - versions.yaml
+      fileParameters:
   destination:
     server: https://kubernetes.default.svc
     namespace: papers

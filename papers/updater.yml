@@ -1,37 +1,37 @@
-#apiVersion: argocd-image-updater.argoproj.io/v1alpha1
-#kind: ImageUpdater
-#metadata:
-#  name: papers-image-updater
-#  namespace: argo-cd
-#spec:
-#  namespace: argo-cd
-#  applicationRefs:
-#    - namePattern: "paper*"
-#      commonUpdateSettings:
-#        updateStrategy: "newest-build"
-#        allowTags: "regexp:^[0-9a-fA-F]{8,40}$"
-#      writeBackConfig:
-#        method: "git:secret:argocd-image-updater-system/git-creds"
-#        gitConfig:
-#          repository: "https://github.com/sachk/comp3900_k8s_deployment.git"
-#          branch: "main"
-#          writeBackTarget: "helmvalues:/papers/application.yaml"
-#      images:
-#        - alias: "paper-frontend"
-#          imageName: "ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend"
-#          manifestTargets:
-#            helm:
-#              name: "image.frontend.repository"
-#              tag: "image.frontend.tag"
-#        - alias: "paper-migrations"
-#          imageName: "ghcr.io/unsw-cse-comp99-3900/h09b-banana-migration-runner"
-#          manifestTargets:
-#            helm:
-#              name: "image.migrations.repository"
-#              tag: "image.migrations.tag"
-#        - alias: "paper-worker"
-#          imageName: "ghcr.io/unsw-cse-comp99-3900/h09b-banana-queue-worker"
-#          manifestTargets:
-#            helm:
-#              name: "image.worker.repository"
-#              tag: "image.worker.tag"
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+metadata:
+  name: papers-image-updater
+  namespace: argo-cd
+spec:
+  namespace: argo-cd
+  applicationRefs:
+    - namePattern: "paper*"
+      commonUpdateSettings:
+        updateStrategy: "newest-build"
+        allowTags: "regexp:^[0-9a-fA-F]{8,40}$"
+      writeBackConfig:
+        method: "git:secret:argocd-image-updater-system/git-creds"
+        gitConfig:
+          repository: "https://github.com/sachk/comp3900_k8s_deployment.git"
+          branch: "main"
+          writeBackTarget: "helmvalues:/papers/versions.yaml"
+      images:
+        - alias: "paper-frontend"
+          imageName: "ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend"
+          manifestTargets:
+            helm:
+              name: "image.frontend.repository"
+              tag: "image.frontend.tag"
+        - alias: "paper-migrations"
+          imageName: "ghcr.io/unsw-cse-comp99-3900/h09b-banana-migration-runner"
+          manifestTargets:
+            helm:
+              name: "image.migrations.repository"
+              tag: "image.migrations.tag"
+        - alias: "paper-worker"
+          imageName: "ghcr.io/unsw-cse-comp99-3900/h09b-banana-queue-worker"
+          manifestTargets:
+            helm:
+              name: "image.worker.repository"
+              tag: "image.worker.tag"

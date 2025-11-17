@@ -5,9 +5,8 @@ metadata:
 data:
   registries.conf: |
     registries:
-    - name: Docker Hub
-      prefix: docker.io
-      api_url: https://registry-1.docker.io
-      credentials: secret:foo/bar#creds
-      defaultns: library
-      default: true
+      - name: GitHub Container Registry
+        api_url: https://ghcr.io
+        prefix: ghcr.io
+        ping: yes
+        credentials: pullsecret:argocd-image-updater-system/ghcr-login-secret
