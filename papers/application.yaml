@@ -7,14 +7,14 @@ spec:
   project: default
   sources:
     - repoURL: https://github.com/unsw-cse-comp99-3900/capstone-project-25t3-3900-h09b-banana.git
-      targetRevision: develop
+      targetRevision: H09BBANANA-28-opentele-logging
       path: deployment/helm-chart
       helm:
         valueFiles:
           - $values/papers/values.yaml
           - $values/papers/versions.yaml
     - repoURL: "git@github.com:sachk/comp3900_k8s_deployment.git"
-      targetRevision: H09BBANANA-28-opentele-logging
+      targetRevision: main
       ref: values
   syncPolicy:
     automated: {}

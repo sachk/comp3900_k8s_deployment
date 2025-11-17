@@ -2,12 +2,12 @@ image:
   frontend:
     repository: ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend
     pullPolicy: IfNotPresent
-    tag: "fd0302b1286619975253ba28f1b8fb0a3ce70c96"
+    tag: "778319d660b2096b7fc978c2bbaa6c1d5c7f2954"
   migrations:
     repository: ghcr.io/unsw-cse-comp99-3900/h09b-banana-migration-runner
     pullPolicy: IfNotPresent
-    tag: "fd0302b1286619975253ba28f1b8fb0a3ce70c96"
+    tag: "778319d660b2096b7fc978c2bbaa6c1d5c7f2954"
   worker:
     repository: ghcr.io/unsw-cse-comp99-3900/h09b-banana-queue-worker
     pullPolicy: IfNotPresent
-    tag: "fd0302b1286619975253ba28f1b8fb0a3ce70c96"
+    tag: "778319d660b2096b7fc978c2bbaa6c1d5c7f2954"
