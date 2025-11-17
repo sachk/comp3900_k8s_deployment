@@ -6,16 +6,12 @@ metadata:
 spec:
   namespace: argo-cd
   applicationRefs:
-    - namePattern: "paper*"
+    - namePattern: "papers"
       commonUpdateSettings:
         updateStrategy: "newest-build"
         allowTags: "regexp:^[0-9a-fA-F]{8,40}$"
       writeBackConfig:
-        method: "git:secret:argocd-image-updater-system/git-creds"
-        gitConfig:
-          repository: "https://github.com/sachk/comp3900_k8s_deployment.git"
-          branch: "main"
-          writeBackTarget: "helmvalues:/papers/versions.yaml"
+        method: "argo"
       images:
         - alias: "papers-frontend"
           imageName: "ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend"
