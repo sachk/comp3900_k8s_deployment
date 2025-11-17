@@ -17,19 +17,19 @@ spec:
           branch: "main"
           writeBackTarget: "helmvalues:/papers/versions.yaml"
       images:
-        - alias: "paper-frontend"
+        - alias: "papers-frontend"
           imageName: "ghcr.io/unsw-cse-comp99-3900/h09b-banana-frontend"
           manifestTargets:
             helm:
               name: "image.frontend.repository"
               tag: "image.frontend.tag"
-        - alias: "paper-migrations"
+        - alias: "papers-migrations"
           imageName: "ghcr.io/unsw-cse-comp99-3900/h09b-banana-migration-runner"
           manifestTargets:
             helm:
               name: "image.migrations.repository"
               tag: "image.migrations.tag"
-        - alias: "paper-worker"
+        - alias: "papers-worker"
           imageName: "ghcr.io/unsw-cse-comp99-3900/h09b-banana-queue-worker"
           manifestTargets:
             helm:
