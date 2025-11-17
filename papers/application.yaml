@@ -16,6 +16,8 @@ spec:
     - repoURL: "git@github.com:sachk/comp3900_k8s_deployment.git"
       targetRevision: main
       ref: values
+  syncPolicy:
+    automated: {}
   destination:
     server: https://kubernetes.default.svc
     namespace: papers
