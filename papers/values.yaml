@@ -72,3 +72,11 @@ oauth:
 initContainers:
   migrations:
     enabled: true
+
+mui:
+  secretName: mui-license
+  licenseKey: license
+
+encryption:
+  secretName: web-encryption
+  key: key
