@@ -53,13 +53,14 @@ worker:
   replicaCount: 1
   nodeEnv: production
   supabaseUrl: https://api.paper.observer
-  pollIntervalMs: 30000
+  pollIntervalMs: 10
   opentelemetry:
     endpoint: "https://otlp-gateway-prod-au-southeast-1.grafana.net/otlp"
     tracesExporter: otlp
     headers: "Authorization=Basic MTQ0MDUyOTpnbGNfZXlKdklqb2lNVFU1TVRVNU5TSXNJbTRpT2lKNWIzVnlMV2R5WVdaaGJtRXRkRzlyWlc0aUxDSnJJam9pVFhWWVZ6QjVkalF6UzFBNU5FVm9PVFJWT0Zvd1RsWXpJaXdpYlNJNmV5SnlJam9pY0hKdlpDMWhkUzF6YjNWMGFHVmhjM1F0TVNKOWZRPT0="
     resourceAttributes: "service.name=papers-worker,service.namespace=papers"
     nodeResourceDetectors: "env,host,os"
+
 oauth:
   secretName: supabase-oauth
   google:
